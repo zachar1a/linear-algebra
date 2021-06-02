@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 
 #include "matrix.hpp"
 
@@ -118,10 +119,73 @@ void matrix::T(){
 }
 
 
+double matrix::determinent(){
+	// basic checks to see if we can even find determinent
+	if(!this->square())
+		return -1.0;
+	if(this->row > 3)
+		return -1.0;
+
+	if(this->row == 2)
+		return (this->data[0][0] * this->data[1][1]) - (this->data[0][1] * this->data[1][0]);
+
+	if(this->row == 3){
+		// a
+		double det_a = this->data[0][0] *((this->data[1][1] * this->data[2][2]) - (this->data[1][2] * this->data[2][1]));
+		double det_b = this->data[0][1] *((this->data[1][0] * this->data[2][2]) - (this->data[1][2] * this->data[2][0]));
+		double det_c = this->data[0][2] *((this->data[1][0] * this->data[2][1]) - (this->data[1][1] * this->data[2][0]));
+		return det_a - det_b + det_c;
+	}
+
+	return -1.0;
+}
+
+matrix matrix::adjoint(){
+	matrix adjointMatrix(this->row, this->col);
+
+	if(this->row == 2){
+		// adjoint for 2x2 goes here
+	}
+
+	if(this->row == 3){
+		// adoint for 3x3 goes here
+		auto data = this->data;
+
+		double a11 =   (data[1][1] * data[2][2]) - (data[1][2] * data[2][1]);
+		double a12 = -((data[1][0] * data[1][2]) - (data[2][0] * data[2][2]));
+		double a13 =   (data[1][0] * data[1][1]) - (data[2][0] * data[2][1]);
+
+		double a21 = -((data[0][1] * data[2][2]) - (data[0][2] * data[2][1]));
+		double a22 =   (data[0][0] * data[2][2]) - (data[0][2] * data[2][0]);
+		double a23 = -((data[0][0] * data[2][1]) - (data[0][1] * data[2][0]));
+
+		double a31 =   (data[0][1] * data[1][2]) - (data[0][2] * data[1][1]);
+		double a32 = -((data[0][0] * data[1][2]) - (data[0][2] * data[1][0]));
+		double a33 =   (data[0][0] * data[1][1]) - (data[0][1] * data[1][0]);
+
+		adjointMatrix.data = {
+			{a11,a12,a13},
+			{a21,a22,a23},
+			{a31,a32,a33}
+		};
+
+	}
+
+
+	if(this->row != 2 && this->row != 3){
+		adjointMatrix.row = 1;
+		adjointMatrix.col = 1;
+		adjointMatrix.data = {{-1}};
+
+		return adjointMatrix;
+	}
+	return adjointMatrix;
+}
+
+
 // 
 // work in progress
 //
-
 /*
 void matrix::matrixInverse(matrix &m1){
 	try{(!m1.square()) ? throw "Matrix has no inverse!": m1.square();}
@@ -141,8 +205,3 @@ void matrix::matrixInverse(matrix &m1){
 	}
 }
 */
-
-
-
-
-

@@ -5,7 +5,7 @@
 // for this to be available i am going to have to
 // work on matrix inversion
 matrix linalg::solveSystemOfEquations(matrix &m1){
-  printf("solvin system of equqations !!\n");
+  printf("solving system of equqations !!\n");
 
 
 
