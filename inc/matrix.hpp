@@ -33,10 +33,10 @@ struct matrix{
 	// of a matrix and then i am going to
 	// have to make another function to get
 	// the adjunct matrix
-	void matrixInverse(matrix &m1);
+	void Inverse();
 
-	matrix adjoint();
-	double determinent();
+	void adj();
+	double det();
 	private:
 	bool isSquare;
 };
