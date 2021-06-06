@@ -7,24 +7,30 @@
 int main(){
 
 
-	matrix m5(3,3);
-	matrix m3(3,3);
+	matrix m1(3,3);
+	matrix m2(1,3);
 
-	m5.randomData();
-	m5.displayMatrix();
-	printf("\n\n");
-
-	m3.data={
-		{3,0,2},
-		{2,0,-2},
-		{0,1,1}
+	m1.data={
+		{1,1,1},
+		{0,2,5},
+		{2,5,-1}
 	};
-	m3.displayMatrix();
-	printf("\n\n");
+	m2.data={
+		{6},
+		{-4},
+		{27}
+	};
 
+	matrix dot = m1.dot(m2);
 
-	m5+=m3;
-	m5.displayMatrix();
+	double det = m1.det();
+
+	m1.inverse();
+	m1.displayMatrix();
+
+	printf("\n\n\n");
+	dot.displayMatrix();
+
 
 
 

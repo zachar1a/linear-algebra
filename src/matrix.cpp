@@ -35,19 +35,21 @@ void matrix::scalar(double scalar){
 			 this->data[i][j] *= scalar;
 }
 
-// 
-// compares row and col values for easy false detection
-// then compares each value
-//
-bool matrix::matrixAreEqual(matrix &m2){
-	if(this->row != m2.row || this->col != m2.col)
-		return false;
+matrix matrix::dot(matrix &m1){
+	std::vector<double>tmp;
+	matrix prod(m1.row, this->col);
 
-	for(int i = 0; i < this->row; i++)
+	for(int i = 0; i < m1.row; i++ ){
+		double p = 0;
+		for(int j = 0; j < this->col; j++ ){
+			p+= this->data[i][j] * m1.data[i][j];
+			tmp.push_back(p);
+		}
+	}
+	for(int i = 0; i < m1.row; i++)
 		for(int j = 0; j < this->col; j++)
-			if(this->data[i][j] != m2[i][j])
-				return false;
-	return true;
+			prod[i][j]=tmp[i+j];
+	return prod;
 }
 
 //
@@ -194,7 +196,7 @@ void matrix::adj(){
 // setting the values equal to the inverse of
 // the matrix
 //
-void matrix::Inverse(){
+void matrix::inverse(){
 	double det = this->det();
 
 	if(this->row == 2){

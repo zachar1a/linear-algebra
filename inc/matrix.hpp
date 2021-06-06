@@ -59,27 +59,31 @@ struct matrix{
 				this->data[i][j] = this->data[i][j] * m1.data[i][j];
 	}
 
+	bool operator==(matrix &m1){
+		if(this->row != m1.row || this->col != m1.col)
+			return false;
+
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				if(this->data[i][j] != m1[i][j])
+					return false;
+		return true;
+	}
 
 
-	bool square(){ return isSquare; }
-	void displayMatrix();
-	void randomData();
-	bool matrixAreEqual(matrix &m2);
+
 	void T();
 	void scalar(double scalar);
 
-	matrix identity();
-
-	// in order to get the inverse
-	// going i am going to have to make
-	// a function to find the determinent
-	// of a matrix and then i am going to
-	// have to make another function to get
-	// the adjunct matrix
-	void Inverse();
-
+	matrix dot(matrix &m1);
 	void adj();
 	double det();
+	void inverse();
+
+	matrix identity();
+	void displayMatrix();
+	bool square(){ return isSquare; }
+	void randomData();
 	private:
 	bool isSquare;
 };
