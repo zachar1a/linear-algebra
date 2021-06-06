@@ -8,20 +8,24 @@ int main(){
 
 
 	matrix m5(3,3);
+	matrix m3(3,3);
 
 	m5.randomData();
 	m5.displayMatrix();
+	printf("\n\n");
 
-	/*
-	m5.data={
+	m3.data={
 		{3,0,2},
 		{2,0,-2},
 		{0,1,1}
 	};
-	*/
-	printf("inverse for m5: \n\n");
-	m5.Inverse();
+	m3.displayMatrix();
+	printf("\n\n");
+
+
+	m5+=m3;
 	m5.displayMatrix();
+
 
 
 

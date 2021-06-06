@@ -15,15 +15,58 @@ struct matrix{
 		return data[i];
 	}
 
+	matrix operator+(matrix &m1){
+		matrix add(this->row,this->col);
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				add[i][j] = this->data[i][j] + m1.data[i][j];
+		return add;
+	}
+
+
+	void operator+=(matrix &m1){
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				this->data[i][j] = this->data[i][j] + m1.data[i][j];
+
+
+	}
+
+	matrix operator-(matrix &m1){
+		matrix sub(this->row,this->col);
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				sub[i][j] = this->data[i][j] - m1.data[i][j];
+		return sub;
+	}
+
+	void operator-=(matrix &m1){
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				this->data[i][j] = this->data[i][j] - m1.data[i][j];
+	}
+
+	matrix operator*(matrix &m1){
+		matrix mult(this->row,this->col);
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				mult[i][j] = this->data[i][j] * m1.data[i][j];
+		return mult;
+	}
+	void operator*=(matrix &m1){
+		for(int i = 0; i < this->row; i++)
+			for(int j = 0; j < this->col; j++)
+				this->data[i][j] = this->data[i][j] * m1.data[i][j];
+	}
+
+
+
 	bool square(){ return isSquare; }
 	void displayMatrix();
 	void randomData();
 	bool matrixAreEqual(matrix &m2);
 	void T();
 	void scalar(double scalar);
-	void addition(matrix &m2);
-	void subtraction(matrix &m2);
-	void multiplication(matrix &m2);
 
 	matrix identity();
 

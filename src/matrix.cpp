@@ -36,41 +36,6 @@ void matrix::scalar(double scalar){
 }
 
 // 
-// simple addition of two matrices
-//
-void matrix::addition(matrix &m2){
-	for(int i = 0; i < this->row; i++)
-		for(int j = 0; j < this->col; j++)
-			this->data[i][j] = this->data[i][j]+m2[i][j];
-}
-
-// 
-// simple subtraction of two matrices
-//
-void matrix::subtraction(matrix &m2){
-	matrix ms(this->row, this->col); 
-	for(int i = 0; i < this->row; i++)
-		for(int j = 0; j < this->col; j++)
-			ms[i][j] = this->data[i][j]-m2[i][j];
-	*this = ms;
-}
-
-//
-// multiplies two matrixes together 
-// and returns a new matrix with
-// dimensions   m1.row,m2.col
-//
-void matrix::multiplication(matrix &m2){
-	matrix mProduct(this->row, this->col);
-
-	for(int i = 0; i < this->row; i++)
-		for(int j = 0; j < m2.col; j++)
-			for(int k = 0; k < this->col; k++)
-				mProduct[i][j] += this->data[i][k] * m2[k][j];
-	*this = mProduct;
-}
-
-// 
 // compares row and col values for easy false detection
 // then compares each value
 //
