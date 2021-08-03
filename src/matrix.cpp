@@ -37,18 +37,25 @@ void matrix::scalar(double scalar){
 
 matrix matrix::dot(matrix &m1){
 	std::vector<double>tmp;
-	matrix prod(m1.row, this->col);
+	matrix prod(m1.row, m1.col);
 
 	for(int i = 0; i < m1.row; i++ ){
 		double p = 0;
 		for(int j = 0; j < this->col; j++ ){
-			p+= this->data[i][j] * m1.data[i][j];
-			tmp.push_back(p);
+			if(m1.col == 1){
+				printf("in if\n");
+				p+= this->data[i][j] * m1.data[0][j];
+				continue;
+			}
+			std::cout << this->data[i][j] << " * " << m1.data[j][i] << " = " << this->data[i][j] * m1.data[j][i] << std::endl;
+			p+= this->data[i][j] * m1.data[j][i];
 		}
+		tmp.push_back(p);
 	}
 	for(int i = 0; i < m1.row; i++)
-		for(int j = 0; j < this->col; j++)
+		for(int j = 0; j < m1.col; j++)
 			prod[i][j]=tmp[i+j];
+	tmp.clear();
 	return prod;
 }
 
